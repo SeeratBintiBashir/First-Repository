@@ -1,0 +1,56 @@
+fun main(){
+val payment = CreditCardPayment("1234567890", "Fatima", 5000)
+    val pPayment = PayPalPayment("8766435",0)
+    payment.processPayment()
+    payment.displayReceipt()
+    println("\n")
+    pPayment.processPayment()
+    pPayment.displayReceipt()
+}
+
+interface Payment{
+    fun processPayment()
+    fun displayReceipt()
+}
+
+
+ class CreditCardPayment(private val cardNumber: String, private val cardHolderName: String, private val amount: Int): Payment{
+
+    override fun processPayment() {
+        if (amount > 0) {
+            println("Processing credit card payment of $amount ")
+            println("Credit card payment successful!")
+        }else{
+            println("Insufficient Balance")
+        }
+    }
+
+
+
+     override fun displayReceipt() {
+         println("Receipt for credit card payment:")
+         println("Card Number: $cardNumber")
+         println("Amount: $cardHolderName ")
+         println("Amount: $amount ")
+
+     }
+}
+
+
+class PayPalPayment(private val cardNumber: String, private val amount: Int): Payment{
+    override fun processPayment() {
+        if (amount > 0) {
+            println("Processing PayPal card payment of $amount ")
+            println("Paypal card payment successful!")
+        }else{
+            println("Insufficient Balance")
+        }
+    }
+
+
+    override fun displayReceipt() {
+        println("Receipt for PayPal card payment:")
+        println("Amount: $amount ")
+        println("Card Number: $cardNumber")    }
+
+}
